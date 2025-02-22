@@ -6,7 +6,7 @@ channels:
   - rdkit
 
 dependencies:
-  - python>=3.10
+  - python=3.12.8
   - gunicorn>=20.0.4
   - rdkit>=2020.03.1.0
   - pytorch>=1.6.0
