@@ -1,6 +1,5 @@
-python predict.py \
+time python chempropIRZenodo/chempropIR/predict.py \
   --gpu 0 \
-  --test_path trained_ir_model/experiment_model/test_smiles.csv \
-  --features_path trained_ir_model/experiment_model/test_features.csv \
-  --checkpoint_dir trained_ir_model/experiment_model/model_files \
-  --preds_path ./output/ir_preds.csv
+  --test_path data/computed_data/test_smiles.csv \
+  --checkpoint_path output/model/model.pt \
+  --preds_path output/model/hybrid.csv

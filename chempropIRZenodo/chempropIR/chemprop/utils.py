@@ -21,7 +21,8 @@ from torch.optim import Adam, Optimizer, Adadelta, Adagrad
 from torch.optim.lr_scheduler import _LRScheduler
 
 from chemprop.data import StandardScaler
-from chemprop.models import build_model, MoleculeModel, mpn
+from chemprop.models import build_model, MoleculeModel, mpn, build_qnn_model
+from chemprop.models import MoleculeModel, mpn
 from chemprop.nn_utils import NoamLR
 from chemprop.train.spectral_loss import sid, wasserstein, jsd, stmse, srmse, smse
 
@@ -105,8 +106,12 @@ def load_checkpoint(
     args.cuda = cuda if cuda is not None else args.cuda
 
     # Build model
-    model = build_model(args)
-    model_state_dict = model.state_dict()
+    if args.qnn == True:
+        model = build_qnn_model(args)
+        model_state_dict = model.state_dict()
+    else:
+        model = build_model(args)
+        model_state_dict = model.state_dict()
 
     # Skip missing parameters and parameters of mismatched size
     pretrained_state_dict = {}

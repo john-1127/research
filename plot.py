@@ -50,7 +50,7 @@ def generate_spectra_comparison(
 
 
 # example
-file_path_1 = "./data/computed_data/test_preds.csv"
+file_path_1 = "./output/model/hybrid.csv"
 df_1 = pd.read_csv(file_path_1)
 
 file_path_2 = "./data/computed_data/test_full.csv"
@@ -71,4 +71,4 @@ lines = [
 ]
 
 
-generate_spectra_comparison(wavenumbers, lines, "./123.png")
+generate_spectra_comparison(wavenumbers, lines, "./output/figure/hybrid.png")

@@ -18,7 +18,7 @@ from .train import train
 from .spectral_loss import pre_normalize_targets, apply_spectral_mask
 from chemprop.data import StandardScaler
 from chemprop.data.utils import get_class_sizes, get_data, get_task_names, split_data
-from chemprop.models.model_qun_hidden import build_model
+from chemprop.models import build_model, build_qnn_model
 from chemprop.nn_utils import param_count
 from chemprop.utils import (
     build_optimizer,
@@ -248,7 +248,10 @@ def run_training(args: Namespace, logger: Logger = None) -> List[float]:
             )
         else:
             debug(f"Building model {model_idx}")
-            model = build_model(args)
+            if args.qnn == True:
+                model = build_qnn_model(args)
+            else:
+                model = build_model(args)
         if args.frzn_mpn_checkpoint is not None:
             debug(f"Loading mpn parameters from {args.frzn_mpn_checkpoint}")
             model = load_frzn_mpn(

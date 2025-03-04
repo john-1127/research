@@ -47,6 +47,9 @@ def add_predict_args(parser: ArgumentParser):
                         help='Standard deviation for convolution before SID calculation, in reference to the'
                             'number of task buckets to span. Default is with no convolution. A convolution value'
                             'of 5.0 will correspond to the SIS metric.')
+    parser.add_argument('--qnn', action='store_true', default=False,
+                        help='Set hybrid qnn model')
+
 
 
 def add_train_args(parser: ArgumentParser):
@@ -182,6 +185,8 @@ def add_train_args(parser: ArgumentParser):
                         help='Turn off scaling of regression targets')
 
     # Model arguments
+    parser.add_argument('--qnn', action='store_true', default=False,
+                        help='Set hybrid qnn model')
     parser.add_argument('--ensemble_size', type=int, default=1,
                         help='Number of models in ensemble')
     parser.add_argument('--hidden_size', type=int, default=300,

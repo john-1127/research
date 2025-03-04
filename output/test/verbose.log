@@ -1,0 +1,625 @@
+Fold 0
+{'activation': 'ReLU',
+ 'atom_messages': False,
+ 'batch_size': 50,
+ 'bias': False,
+ 'bias_ffn': True,
+ 'checkpoint_dir': None,
+ 'checkpoint_path': None,
+ 'checkpoint_paths': None,
+ 'config_path': './recommended_config.json',
+ 'convergence_margin': 100000000.0,
+ 'crossval_index_dir': None,
+ 'crossval_index_file': None,
+ 'cuda': True,
+ 'data_path': 'chempropIRZenodo/trained_ir_model/computed_model/test_full.csv',
+ 'dataset_type': 'spectra',
+ 'depth': 6,
+ 'device': 'cuda:0',
+ 'dropout': 0.05,
+ 'ensemble_size': 1,
+ 'epochs': 0,
+ 'features_generator': ['morgan'],
+ 'features_only': True,
+ 'features_path': None,
+ 'features_scaling': False,
+ 'ffn_hidden_size': 2048,
+ 'ffn_num_layers': 3,
+ 'final_lr': 7e-05,
+ 'folds_file': None,
+ 'frzn_mpn_checkpoint': None,
+ 'gpu': 0,
+ 'hidden_size': 2200,
+ 'init_lr': 0.0001,
+ 'max_data_size': None,
+ 'max_lr': 7e-05,
+ 'metric': 'sid',
+ 'minimize_score': True,
+ 'multiclass_num_classes': 3,
+ 'no_cache': False,
+ 'normalization_end': 550,
+ 'normalization_start': 50,
+ 'num_folds': 1,
+ 'num_lrs': 1,
+ 'output_activation': 'exp',
+ 'qnn': False,
+ 'quiet': False,
+ 'save_dir': './output/test/fold_0',
+ 'save_smiles_splits': True,
+ 'seed': 0,
+ 'separate_test_features_path': None,
+ 'separate_test_path': None,
+ 'separate_val_features_path': None,
+ 'separate_val_path': None,
+ 'show_individual_scores': False,
+ 'sm_eps': 1e-08,
+ 'sm_thresh': 1e-08,
+ 'spectral_loss_function': 'sid',
+ 'spectral_mask_path': None,
+ 'split_sizes': [0.8, 0.1, 0.1],
+ 'split_type': 'random_with_repeated_smiles',
+ 'target_scaling': True,
+ 'test': True,
+ 'test_fold_index': None,
+ 'torch_seed': None,
+ 'undirected': False,
+ 'use_compound_names': False,
+ 'use_input_features': ['morgan'],
+ 'val_fold_index': None,
+ 'warmup_epochs': 2.0}
+Loading data
+Number of tasks = 1801
+Splitting data with seed 0
+Total size = 8,551 | train size = 6,840 | val size = 855 | test size = 856
+Pre-normalizing training targets
+Building model 0
+MoleculeModel(
+  (encoder): MPN(
+    (encoder): MPNEncoder()
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.05, inplace=False)
+    (1): Linear(in_features=2048, out_features=2048, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.05, inplace=False)
+    (4): Linear(in_features=2048, out_features=2048, bias=True)
+    (5): ReLU()
+    (6): Dropout(p=0.05, inplace=False)
+    (7): Linear(in_features=2048, out_features=1801, bias=True)
+  )
+)
+Number of parameters = 12,082,953
+Moving model to cuda
+Model 0 best validation sid = inf on epoch 0
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.4.weight".
+Loading pretrained parameter "ffn.4.bias".
+Loading pretrained parameter "ffn.7.weight".
+Loading pretrained parameter "ffn.7.bias".
+Moving model to cuda
+Model 0 test sid = 2.312456
+Ensemble test sid = 2.312456
+1-fold cross validation
+Seed 0 ==> test sid = 2.312456
+Overall test sid = 2.312456 +/- 0.000000
+Fold 0
+{'activation': 'ReLU',
+ 'atom_messages': False,
+ 'batch_size': 50,
+ 'bias': False,
+ 'bias_ffn': True,
+ 'checkpoint_dir': None,
+ 'checkpoint_path': None,
+ 'checkpoint_paths': None,
+ 'config_path': './recommended_config.json',
+ 'convergence_margin': 100000000.0,
+ 'crossval_index_dir': None,
+ 'crossval_index_file': None,
+ 'cuda': True,
+ 'data_path': 'chempropIRZenodo/trained_ir_model/computed_model/test_full.csv',
+ 'dataset_type': 'spectra',
+ 'depth': 6,
+ 'device': 'cuda:0',
+ 'dropout': 0.05,
+ 'ensemble_size': 1,
+ 'epochs': 0,
+ 'features_generator': ['morgan'],
+ 'features_only': True,
+ 'features_path': None,
+ 'features_scaling': False,
+ 'ffn_hidden_size': 2048,
+ 'ffn_num_layers': 3,
+ 'final_lr': 7e-05,
+ 'folds_file': None,
+ 'frzn_mpn_checkpoint': None,
+ 'gpu': 0,
+ 'hidden_size': 2200,
+ 'init_lr': 0.0001,
+ 'max_data_size': None,
+ 'max_lr': 7e-05,
+ 'metric': 'sid',
+ 'minimize_score': True,
+ 'multiclass_num_classes': 3,
+ 'no_cache': False,
+ 'normalization_end': 550,
+ 'normalization_start': 50,
+ 'num_folds': 1,
+ 'num_lrs': 1,
+ 'output_activation': 'exp',
+ 'qnn': True,
+ 'quiet': False,
+ 'save_dir': './output/test/fold_0',
+ 'save_smiles_splits': True,
+ 'seed': 0,
+ 'separate_test_features_path': None,
+ 'separate_test_path': None,
+ 'separate_val_features_path': None,
+ 'separate_val_path': None,
+ 'show_individual_scores': False,
+ 'sm_eps': 1e-08,
+ 'sm_thresh': 1e-08,
+ 'spectral_loss_function': 'sid',
+ 'spectral_mask_path': None,
+ 'split_sizes': [0.8, 0.1, 0.1],
+ 'split_type': 'random_with_repeated_smiles',
+ 'target_scaling': True,
+ 'test': True,
+ 'test_fold_index': None,
+ 'torch_seed': None,
+ 'undirected': False,
+ 'use_compound_names': False,
+ 'use_input_features': ['morgan'],
+ 'val_fold_index': None,
+ 'warmup_epochs': 2.0}
+Loading data
+Number of tasks = 1801
+Splitting data with seed 0
+Total size = 8,551 | train size = 6,840 | val size = 855 | test size = 856
+Pre-normalizing training targets
+Building model 0
+MoleculeModel(
+  (encoder): MPN(
+    (encoder): MPNEncoder()
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.05, inplace=False)
+    (1): Linear(in_features=2048, out_features=2048, bias=True)
+    (2): ReLU()
+    (3): <Quantum Torch Layer: func=qnode>
+    (4): ReLU()
+    (5): Linear(in_features=11, out_features=2048, bias=True)
+    (6): ReLU()
+    (7): Dropout(p=0.05, inplace=False)
+    (8): Linear(in_features=2048, out_features=1801, bias=True)
+  )
+)
+Number of parameters = 7,911,199
+Moving model to cuda
+Model 0 best validation sid = inf on epoch 0
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.3.weights".
+Loading pretrained parameter "ffn.5.weight".
+Loading pretrained parameter "ffn.5.bias".
+Loading pretrained parameter "ffn.8.weight".
+Loading pretrained parameter "ffn.8.bias".
+Moving model to cuda
+Model 0 test sid = 2.307661
+Ensemble test sid = 2.307661
+1-fold cross validation
+Seed 0 ==> test sid = 2.307661
+Overall test sid = 2.307661 +/- 0.000000
+Fold 0
+{'activation': 'ReLU',
+ 'atom_messages': False,
+ 'batch_size': 50,
+ 'bias': False,
+ 'bias_ffn': True,
+ 'checkpoint_dir': None,
+ 'checkpoint_path': None,
+ 'checkpoint_paths': None,
+ 'config_path': './recommended_config.json',
+ 'convergence_margin': 100000000.0,
+ 'crossval_index_dir': None,
+ 'crossval_index_file': None,
+ 'cuda': True,
+ 'data_path': 'chempropIRZenodo/trained_ir_model/computed_model/test_full.csv',
+ 'dataset_type': 'spectra',
+ 'depth': 6,
+ 'device': 'cuda:0',
+ 'dropout': 0.05,
+ 'ensemble_size': 1,
+ 'epochs': 0,
+ 'features_generator': ['morgan'],
+ 'features_only': True,
+ 'features_path': None,
+ 'features_scaling': False,
+ 'ffn_hidden_size': 1024,
+ 'ffn_num_layers': 3,
+ 'final_lr': 7e-05,
+ 'folds_file': None,
+ 'frzn_mpn_checkpoint': None,
+ 'gpu': 0,
+ 'hidden_size': 2200,
+ 'init_lr': 0.0001,
+ 'max_data_size': None,
+ 'max_lr': 7e-05,
+ 'metric': 'sid',
+ 'minimize_score': True,
+ 'multiclass_num_classes': 3,
+ 'no_cache': False,
+ 'normalization_end': 550,
+ 'normalization_start': 50,
+ 'num_folds': 1,
+ 'num_lrs': 1,
+ 'output_activation': 'exp',
+ 'qnn': True,
+ 'quiet': False,
+ 'save_dir': './output/test/fold_0',
+ 'save_smiles_splits': True,
+ 'seed': 0,
+ 'separate_test_features_path': None,
+ 'separate_test_path': None,
+ 'separate_val_features_path': None,
+ 'separate_val_path': None,
+ 'show_individual_scores': False,
+ 'sm_eps': 1e-08,
+ 'sm_thresh': 1e-08,
+ 'spectral_loss_function': 'sid',
+ 'spectral_mask_path': None,
+ 'split_sizes': [0.8, 0.1, 0.1],
+ 'split_type': 'random_with_repeated_smiles',
+ 'target_scaling': True,
+ 'test': True,
+ 'test_fold_index': None,
+ 'torch_seed': None,
+ 'undirected': False,
+ 'use_compound_names': False,
+ 'use_input_features': ['morgan'],
+ 'val_fold_index': None,
+ 'warmup_epochs': 2.0}
+Loading data
+Number of tasks = 1801
+Splitting data with seed 0
+Total size = 8,551 | train size = 6,840 | val size = 855 | test size = 856
+Pre-normalizing training targets
+Building model 0
+MoleculeModel(
+  (encoder): MPN(
+    (encoder): MPNEncoder()
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.05, inplace=False)
+    (1): Linear(in_features=2048, out_features=1024, bias=True)
+    (2): ReLU()
+    (3): <Quantum Torch Layer: func=qnode>
+    (4): ReLU()
+    (5): Linear(in_features=11, out_features=1024, bias=True)
+    (6): ReLU()
+    (7): Dropout(p=0.05, inplace=False)
+    (8): Linear(in_features=1024, out_features=1801, bias=True)
+  )
+)
+Number of parameters = 3,956,511
+Moving model to cuda
+Model 0 best validation sid = inf on epoch 0
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.3.weights".
+Loading pretrained parameter "ffn.5.weight".
+Loading pretrained parameter "ffn.5.bias".
+Loading pretrained parameter "ffn.8.weight".
+Loading pretrained parameter "ffn.8.bias".
+Moving model to cuda
+Fold 0
+{'activation': 'ReLU',
+ 'atom_messages': False,
+ 'batch_size': 50,
+ 'bias': False,
+ 'bias_ffn': True,
+ 'checkpoint_dir': None,
+ 'checkpoint_path': None,
+ 'checkpoint_paths': None,
+ 'config_path': './recommended_config.json',
+ 'convergence_margin': 100000000.0,
+ 'crossval_index_dir': None,
+ 'crossval_index_file': None,
+ 'cuda': True,
+ 'data_path': 'chempropIRZenodo/trained_ir_model/computed_model/test_full.csv',
+ 'dataset_type': 'spectra',
+ 'depth': 6,
+ 'device': 'cuda:0',
+ 'dropout': 0.05,
+ 'ensemble_size': 1,
+ 'epochs': 0,
+ 'features_generator': ['morgan'],
+ 'features_only': True,
+ 'features_path': None,
+ 'features_scaling': False,
+ 'ffn_hidden_size': 1024,
+ 'ffn_num_layers': 3,
+ 'final_lr': 7e-05,
+ 'folds_file': None,
+ 'frzn_mpn_checkpoint': None,
+ 'gpu': 0,
+ 'hidden_size': 2200,
+ 'init_lr': 0.0001,
+ 'max_data_size': None,
+ 'max_lr': 7e-05,
+ 'metric': 'sid',
+ 'minimize_score': True,
+ 'multiclass_num_classes': 3,
+ 'no_cache': False,
+ 'normalization_end': 550,
+ 'normalization_start': 50,
+ 'num_folds': 1,
+ 'num_lrs': 1,
+ 'output_activation': 'exp',
+ 'qnn': True,
+ 'quiet': False,
+ 'save_dir': './output/test/fold_0',
+ 'save_smiles_splits': True,
+ 'seed': 0,
+ 'separate_test_features_path': None,
+ 'separate_test_path': None,
+ 'separate_val_features_path': None,
+ 'separate_val_path': None,
+ 'show_individual_scores': False,
+ 'sm_eps': 1e-08,
+ 'sm_thresh': 1e-08,
+ 'spectral_loss_function': 'sid',
+ 'spectral_mask_path': None,
+ 'split_sizes': [0.8, 0.1, 0.1],
+ 'split_type': 'random_with_repeated_smiles',
+ 'target_scaling': True,
+ 'test': True,
+ 'test_fold_index': None,
+ 'torch_seed': None,
+ 'undirected': False,
+ 'use_compound_names': False,
+ 'use_input_features': ['morgan'],
+ 'val_fold_index': None,
+ 'warmup_epochs': 2.0}
+Loading data
+Number of tasks = 1801
+Splitting data with seed 0
+Total size = 8,551 | train size = 6,840 | val size = 855 | test size = 856
+Pre-normalizing training targets
+Building model 0
+MoleculeModel(
+  (encoder): MPN(
+    (encoder): MPNEncoder()
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.05, inplace=False)
+    (1): Linear(in_features=2048, out_features=1024, bias=True)
+    (2): ReLU()
+    (3): <Quantum Torch Layer: func=qnode>
+    (4): ReLU()
+    (5): Linear(in_features=11, out_features=1024, bias=True)
+    (6): ReLU()
+    (7): Dropout(p=0.05, inplace=False)
+    (8): Linear(in_features=1024, out_features=1801, bias=True)
+  )
+)
+Number of parameters = 3,956,511
+Moving model to cuda
+Model 0 best validation sid = inf on epoch 0
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.3.weights".
+Loading pretrained parameter "ffn.5.weight".
+Loading pretrained parameter "ffn.5.bias".
+Loading pretrained parameter "ffn.8.weight".
+Loading pretrained parameter "ffn.8.bias".
+Moving model to cuda
+Fold 0
+{'activation': 'ReLU',
+ 'atom_messages': False,
+ 'batch_size': 50,
+ 'bias': False,
+ 'bias_ffn': True,
+ 'checkpoint_dir': None,
+ 'checkpoint_path': None,
+ 'checkpoint_paths': None,
+ 'config_path': './recommended_config.json',
+ 'convergence_margin': 100000000.0,
+ 'crossval_index_dir': None,
+ 'crossval_index_file': None,
+ 'cuda': True,
+ 'data_path': 'chempropIRZenodo/trained_ir_model/computed_model/test_full.csv',
+ 'dataset_type': 'spectra',
+ 'depth': 6,
+ 'device': 'cuda:0',
+ 'dropout': 0.05,
+ 'ensemble_size': 1,
+ 'epochs': 0,
+ 'features_generator': ['morgan'],
+ 'features_only': True,
+ 'features_path': None,
+ 'features_scaling': False,
+ 'ffn_hidden_size': 1024,
+ 'ffn_num_layers': 3,
+ 'final_lr': 7e-05,
+ 'folds_file': None,
+ 'frzn_mpn_checkpoint': None,
+ 'gpu': 0,
+ 'hidden_size': 2200,
+ 'init_lr': 0.0001,
+ 'max_data_size': None,
+ 'max_lr': 7e-05,
+ 'metric': 'sid',
+ 'minimize_score': True,
+ 'multiclass_num_classes': 3,
+ 'no_cache': False,
+ 'normalization_end': 550,
+ 'normalization_start': 50,
+ 'num_folds': 1,
+ 'num_lrs': 1,
+ 'output_activation': 'exp',
+ 'qnn': True,
+ 'quiet': False,
+ 'save_dir': './output/test/fold_0',
+ 'save_smiles_splits': True,
+ 'seed': 0,
+ 'separate_test_features_path': None,
+ 'separate_test_path': None,
+ 'separate_val_features_path': None,
+ 'separate_val_path': None,
+ 'show_individual_scores': False,
+ 'sm_eps': 1e-08,
+ 'sm_thresh': 1e-08,
+ 'spectral_loss_function': 'sid',
+ 'spectral_mask_path': None,
+ 'split_sizes': [0.8, 0.1, 0.1],
+ 'split_type': 'random_with_repeated_smiles',
+ 'target_scaling': True,
+ 'test': True,
+ 'test_fold_index': None,
+ 'torch_seed': None,
+ 'undirected': False,
+ 'use_compound_names': False,
+ 'use_input_features': ['morgan'],
+ 'val_fold_index': None,
+ 'warmup_epochs': 2.0}
+Loading data
+Number of tasks = 1801
+Splitting data with seed 0
+Total size = 8,551 | train size = 6,840 | val size = 855 | test size = 856
+Pre-normalizing training targets
+Building model 0
+MoleculeModel(
+  (encoder): MPN(
+    (encoder): MPNEncoder()
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.05, inplace=False)
+    (1): Linear(in_features=2048, out_features=1024, bias=True)
+    (2): ReLU()
+    (3): <Quantum Torch Layer: func=qnode>
+    (4): ReLU()
+    (5): Linear(in_features=11, out_features=1024, bias=True)
+    (6): ReLU()
+    (7): Dropout(p=0.05, inplace=False)
+    (8): Linear(in_features=1024, out_features=1801, bias=True)
+  )
+)
+Number of parameters = 3,956,511
+Moving model to cuda
+Model 0 best validation sid = inf on epoch 0
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.3.weights".
+Loading pretrained parameter "ffn.5.weight".
+Loading pretrained parameter "ffn.5.bias".
+Loading pretrained parameter "ffn.8.weight".
+Loading pretrained parameter "ffn.8.bias".
+Moving model to cuda
+Fold 0
+{'activation': 'ReLU',
+ 'atom_messages': False,
+ 'batch_size': 50,
+ 'bias': False,
+ 'bias_ffn': True,
+ 'checkpoint_dir': None,
+ 'checkpoint_path': None,
+ 'checkpoint_paths': None,
+ 'config_path': './recommended_config.json',
+ 'convergence_margin': 100000000.0,
+ 'crossval_index_dir': None,
+ 'crossval_index_file': None,
+ 'cuda': True,
+ 'data_path': 'chempropIRZenodo/trained_ir_model/computed_model/test_full.csv',
+ 'dataset_type': 'spectra',
+ 'depth': 6,
+ 'device': 'cuda:0',
+ 'dropout': 0.05,
+ 'ensemble_size': 1,
+ 'epochs': 0,
+ 'features_generator': ['morgan'],
+ 'features_only': True,
+ 'features_path': None,
+ 'features_scaling': False,
+ 'ffn_hidden_size': 1024,
+ 'ffn_num_layers': 3,
+ 'final_lr': 7e-05,
+ 'folds_file': None,
+ 'frzn_mpn_checkpoint': None,
+ 'gpu': 0,
+ 'hidden_size': 2200,
+ 'init_lr': 0.0001,
+ 'max_data_size': None,
+ 'max_lr': 7e-05,
+ 'metric': 'sid',
+ 'minimize_score': True,
+ 'multiclass_num_classes': 3,
+ 'no_cache': False,
+ 'normalization_end': 550,
+ 'normalization_start': 50,
+ 'num_folds': 1,
+ 'num_lrs': 1,
+ 'output_activation': 'exp',
+ 'qnn': True,
+ 'quiet': False,
+ 'save_dir': './output/test/fold_0',
+ 'save_smiles_splits': True,
+ 'seed': 0,
+ 'separate_test_features_path': None,
+ 'separate_test_path': None,
+ 'separate_val_features_path': None,
+ 'separate_val_path': None,
+ 'show_individual_scores': False,
+ 'sm_eps': 1e-08,
+ 'sm_thresh': 1e-08,
+ 'spectral_loss_function': 'sid',
+ 'spectral_mask_path': None,
+ 'split_sizes': [0.8, 0.1, 0.1],
+ 'split_type': 'random_with_repeated_smiles',
+ 'target_scaling': True,
+ 'test': True,
+ 'test_fold_index': None,
+ 'torch_seed': None,
+ 'undirected': False,
+ 'use_compound_names': False,
+ 'use_input_features': ['morgan'],
+ 'val_fold_index': None,
+ 'warmup_epochs': 2.0}
+Loading data
+Number of tasks = 1801
+Splitting data with seed 0
+Total size = 8,551 | train size = 6,840 | val size = 855 | test size = 856
+Pre-normalizing training targets
+Building model 0
+MoleculeModel(
+  (encoder): MPN(
+    (encoder): MPNEncoder()
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.05, inplace=False)
+    (1): Linear(in_features=2048, out_features=1024, bias=True)
+    (2): ReLU()
+    (3): <Quantum Torch Layer: func=qnode>
+    (4): ReLU()
+    (5): Linear(in_features=10, out_features=1024, bias=True)
+    (6): ReLU()
+    (7): Dropout(p=0.05, inplace=False)
+    (8): Linear(in_features=1024, out_features=1801, bias=True)
+  )
+)
+Number of parameters = 3,955,485
+Moving model to cuda
+Model 0 best validation sid = inf on epoch 0
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.3.weights".
+Loading pretrained parameter "ffn.5.weight".
+Loading pretrained parameter "ffn.5.bias".
+Loading pretrained parameter "ffn.8.weight".
+Loading pretrained parameter "ffn.8.bias".
+Moving model to cuda
+Model 0 test sid = 2.307645
+Ensemble test sid = 2.307645
+1-fold cross validation
+Seed 0 ==> test sid = 2.307645
+Overall test sid = 2.307645 +/- 0.000000

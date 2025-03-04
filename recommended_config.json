@@ -1,7 +1,7 @@
 {
     "depth": 6,
     "dropout": 0.05,
-    "ffn_hidden_size": 2048,
+    "ffn_hidden_size": 1024,
     "ffn_num_layers": 3,
     "hidden_size": 2200,
     "ensemble_size": 1,

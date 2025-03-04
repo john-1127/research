@@ -1,0 +1,27 @@
+Fold 0
+Model 0 best validation sid = inf on epoch 0
+Model 0 test sid = 2.312456
+Ensemble test sid = 2.312456
+1-fold cross validation
+Seed 0 ==> test sid = 2.312456
+Overall test sid = 2.312456 +/- 0.000000
+Fold 0
+Model 0 best validation sid = inf on epoch 0
+Model 0 test sid = 2.307661
+Ensemble test sid = 2.307661
+1-fold cross validation
+Seed 0 ==> test sid = 2.307661
+Overall test sid = 2.307661 +/- 0.000000
+Fold 0
+Model 0 best validation sid = inf on epoch 0
+Fold 0
+Model 0 best validation sid = inf on epoch 0
+Fold 0
+Model 0 best validation sid = inf on epoch 0
+Fold 0
+Model 0 best validation sid = inf on epoch 0
+Model 0 test sid = 2.307645
+Ensemble test sid = 2.307645
+1-fold cross validation
+Seed 0 ==> test sid = 2.307645
+Overall test sid = 2.307645 +/- 0.000000
