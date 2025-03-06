@@ -106,7 +106,7 @@ def load_checkpoint(
     args.cuda = cuda if cuda is not None else args.cuda
 
     # Build model
-    if args.qnn == True:
+    if args.qnn:
         model = build_qnn_model(args)
         model_state_dict = model.state_dict()
     else:
@@ -470,4 +470,3 @@ def load_spectral_mask(path):
         for line in r:
             lines.append(line[1:])
     return lines
-
