@@ -6,8 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 # Define the IBM Quantum API token as an environment variable
-ARG IBM_QUANTUM_TOKEN
-ENV IBM_QUANTUM_TOKEN=${IBM_QUANTUM_TOKEN}
+# ARG IBM_QUANTUM_TOKEN
+# ENV IBM_QUANTUM_TOKEN=${IBM_QUANTUM_TOKEN}
 
 RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
 libglib2.0-0 libxext6 libsm6 libxrender1 build-essential \
@@ -30,16 +30,21 @@ RUN conda install cairo
 RUN conda install -c conda-forge jupyterlab notebook ipykernel pandas matplotlib
 RUN pip install git+https://github.com/bp-kelley/descriptastorus
 RUN pip install seaborn
-RUN pip install 'qiskit[visualization]' qiskit-ibm-runtime qiskit-aer-gpu qiskit-machine-learning pylatexenc
+RUN pip install pennylane --upgrade
+
+# RUN pip install 'qiskit[visualization]' qiskit-ibm-runtime qiskit-aer-gpu qiskit-machine-learning pylatexenc
+
 RUN pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu121
 RUN conda env update -n base --file /project/environment.yml
-RUN python -c "\
-from qiskit_ibm_runtime import QiskitRuntimeService; \
-QiskitRuntimeService.save_account(\
-    token='${IBM_QUANTUM_TOKEN}', \
-    channel='ibm_quantum'\
-)"
+
+# RUN python -c "\
+# from qiskit_ibm_runtime import QiskitRuntimeService; \
+# QiskitRuntimeService.save_account(\
+#     token='${IBM_QUANTUM_TOKEN}', \
+#     channel='ibm_quantum'\
+# )"
 # For import chempropIR
+
 ENV PYTHONPATH=/project/chempropIRZenodo/chempropIR:$PYTHONPATH
 
 EXPOSE 8888

@@ -35,15 +35,12 @@ python SIS_spectra_similarity.py \
     ../../trained_ir_model/computed_model/test_preds.csv \
     ../../trained_ir_model/computed_model/test_full.csv
 
-內部有改大小才能fit
-script 內部有 similarity.txt
 
+# create container according to image:
+devcontainer up --workspace-folder .
 
-##epochs 250
-##quantumML VQC
-##fingerprint嘗試
-##hybrid 結構
-
+# devcontainer use nvim
+devcontainer exec --workspace-folder . nvim
 
 docker run --rm -it --gpus all -v $(pwd):/project test /bin/bash
 
@@ -51,6 +48,7 @@ docker run --rm -it -v $(pwd):/project --name qiskit_env qiskit_env /bin/bash
 
 docker build --build-arg IBM_QUANTUM_TOKEN=60810070a047c3ed73590379b412de63bb8f5c76c985d4ecafe2ca3d838f1901abd7814fbec97dc3169f1b8927207cb084a6177ff714289df95b2a352c164477 -t qiskit_env .
 使用以下命令安裝jupyter notebook 安裝kernel
+
 python -m ipykernel install --user --name="qiskit_env" --display-name "Python 3 (qiskit_env)"
 
 chempropIR/fingerprint.py --> mpn_output_only == True
