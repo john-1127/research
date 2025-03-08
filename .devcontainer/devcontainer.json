@@ -5,6 +5,10 @@
     "dockerfile": "../Dockerfile"
   },
   "remoteUser": "root",
+  "runArgs": [
+    "--gpus",
+    "all"
+  ],
   "features": {
     "ghcr.io/devcontainers-extra/features/apt-get-packages:1": {
       "packages": "pkg-config libssl-dev"
@@ -26,7 +30,6 @@
     "ghcr.io/devcontainers/features/rust:1": {}
   },
   "mounts": [
-    "source=${env:HOME}/.gitconfig,target=/root/.gitconfig,type=bind",
     "source=${env:HOME}/.git-credentials,target=/root/.git-credentials,type=bind"
   ],
   "postCreateCommand": [
