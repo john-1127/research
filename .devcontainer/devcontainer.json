@@ -7,7 +7,9 @@
   "remoteUser": "root",
   "runArgs": [
     "--gpus",
-    "all"
+    "all",
+    "--name",
+    "john_devcontainer"
   ],
   "features": {
     "ghcr.io/devcontainers-extra/features/apt-get-packages:1": {
@@ -30,7 +32,6 @@
     "ghcr.io/devcontainers/features/rust:1": {}
   },
   "mounts": [
-    "source=${env:HOME}/.git-credentials,target=/root/.git-credentials,type=bind"
   ],
   "postCreateCommand": [
     "bash",
