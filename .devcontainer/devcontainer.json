@@ -28,11 +28,9 @@
       "version": "lts"
     },
     "ghcr.io/rio/features/chezmoi:1": {},
-    "ghcr.io/GeorgOfenbeck/features/lazygit-linuxbinary:1": {},
     "ghcr.io/devcontainers/features/rust:1": {}
   },
-  "mounts": [
-  ],
+  "mounts": [],
   "postCreateCommand": [
     "bash",
     "-c",
