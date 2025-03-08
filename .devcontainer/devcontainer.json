@@ -11,6 +11,9 @@
     "--name",
     "john_devcontainer"
   ],
+  "containerEnv": {
+    "SHELL": "/bin/bash"
+  },
   "features": {
     "ghcr.io/devcontainers-extra/features/apt-get-packages:1": {
       "packages": "pkg-config libssl-dev"

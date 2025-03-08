@@ -1,8 +1,8 @@
 import torch
 
 if torch.cuda.is_available():
-    print(f"CUDA 可用 ✅, GPU 數量: {torch.cuda.device_count()}")
-    print(f"GPU 名稱: {torch.cuda.get_device_name(0)}")
-    print(f"CUDA 版本: {torch.version.cuda}")
+    print(f"CUDA ✅, Numbers of GPU: {torch.cuda.device_count()}")
+    print(f"GPU Name: {torch.cuda.get_device_name(0)}")
+    print(f"CUDA version: {torch.version.cuda}")
 else:
-    print("❌ PyTorch 無法使用 GPU，請檢查 CUDA 安裝及 docker 參數")
+    print("❌ PyTorch can't use GPU")
