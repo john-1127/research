@@ -1,5 +1,5 @@
 {
-  "name": "john_research",
+  "name": "john_devcontainer",
   "image": "john_research",
   "build": {
     "dockerfile": "../Dockerfile"
