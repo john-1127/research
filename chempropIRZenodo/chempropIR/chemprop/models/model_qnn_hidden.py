@@ -77,7 +77,7 @@ class MoleculeModel(nn.Module):
         def qnode(inputs, weights):
             qml.AmplitudeEmbedding(inputs, wires=range(num_qubits), normalize=True)
             qml.BasicEntanglerLayers(weights, wires=range(num_qubits))
-            return qml.probs(wires=range(n_wires))
+            return qml.probs(wires=range(num_qubits))
             return [qml.expval(qml.PauliZ(i)) for i in range(num_qubits)]
         
         weight_shapes = {"weights": (2, num_qubits)}
