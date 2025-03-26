@@ -71,7 +71,7 @@ class MoleculeModel(nn.Module):
         
 
         # QNN device
-        num_qubits = int(math.log2(args.ffn_hidden_size))
+        num_qubits = int(math.log2(first_linear_dim))
         dev = qml.device("default.qubit", wires=num_qubits)
         @qml.qnode(dev, interface='torch', diff_method='backprop')
         def qnode(inputs, weights):
@@ -80,7 +80,7 @@ class MoleculeModel(nn.Module):
             return qml.probs(wires=range(num_qubits))
             return [qml.expval(qml.PauliZ(i)) for i in range(num_qubits)]
         
-        weight_shapes = {"weights": (2, num_qubits)}
+        weight_shapes = {"weights": (8, num_qubits)}
         qnn_layer = qml.qnn.TorchLayer(qnode, weight_shapes)
 
 
@@ -92,15 +92,11 @@ class MoleculeModel(nn.Module):
             ]
         else:
             ffn = [
-                dropout,
-                nn.Linear(first_linear_dim, args.ffn_hidden_size, bias=bias),
-                activation,
                 qnn_layer,
-                activation,
-                nn.Linear(num_qubits, args.ffn_hidden_size)
+                nn.Linear(first_linear_dim, args.ffn_hidden_size)
             ]
-            if args.ffn_hidden_size > 4:
-                for _ in range(args.ffn_num_layers - 4):
+            if args.ffn_hidden_size > 3:
+                for _ in range(args.ffn_num_layers - 3):
                     ffn.extend([
                         activation,
                         dropout,

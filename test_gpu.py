@@ -6,3 +6,6 @@ if torch.cuda.is_available():
     print(f"CUDA version: {torch.version.cuda}")
 else:
     print("❌ PyTorch can't use GPU")
+
+device = torch.device('cuda')
+torch.rand(10).to(device)

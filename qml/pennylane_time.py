@@ -1,8 +1,8 @@
 import torch as nn
 import pennylane as qml
 
-n_wires = 10
-n_layers = 1
+n_wires = 11
+n_layers = 2
 
 dev = qml.device("default.qubit", wires=n_wires)
 
@@ -13,8 +13,8 @@ params = nn.rand(params_shape)
 @qml.qnode(dev, interface="torch", diff_method="backprop")
 def circuit_cuda(params):
     qml.StronglyEntanglingLayers(params, wires=range(n_wires))
-    # return qml.probs(wires=range(n_wires))
-    return [qml.expval(qml.PauliZ(wires=i)) for i in range(n_wires)]
+    return qml.probs(wires=range(n_wires))
+    # return [qml.expval(qml.PauliZ(wires=i)) for i in range(n_wires)]
 
 
 import timeit

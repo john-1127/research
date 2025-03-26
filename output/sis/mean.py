@@ -13,10 +13,10 @@ def extract_numbers_from_file(filename):
     
     if numbers:
         avg = sum(numbers) / len(numbers)
-        print(f"數值總和: {sum(numbers):.6f}")
-        print(f"數值平均值: {avg:.6f}")
+        print(f"Sum: {sum(numbers):.6f}")
+        print(f"Mean Value: {avg:.6f}")
     else:
-        print("未找到有效數字")
+        print("Error")
 
-extract_numbers_from_file('/project/output/sis/sis_hybrid.txt')
+extract_numbers_from_file('/workspaces/project/output/sis/similarity.txt')
 

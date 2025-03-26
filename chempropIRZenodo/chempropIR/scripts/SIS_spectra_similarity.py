@@ -93,8 +93,8 @@ def main():
         sims.append(sim)
         # rmses.append(rmse)
         # maes.append(mae)
-        print(f'{e} - {mol}')
-    with open('/project/output/sis/similarity.txt','w') as wf:
+        # print(f'{e} - {mol}')
+    with open('/workspaces/project/output/sis/similarity.txt','w') as wf:
         for e,sim in enumerate(sims):
             wf.write(f'{smiles[e]}\t{sim}\n')
 

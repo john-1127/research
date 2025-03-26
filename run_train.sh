@@ -2,13 +2,14 @@
 
 time python chempropIRZenodo/chempropIR/train.py \
   --gpu 0 \
-  --data_path chempropIRZenodo/trained_ir_model/computed_model/test_full.csv \
+  --data_path ./data/research_fingerprint_data/train_full.csv \
+  --separate_val_path ./data/research_fingerprint_data/val_full.csv \
+  --separate_test_path ./data/research_fingerprint_data/test_full.csv \
   --features_only \
+  --qnn \
   --features_generator morgan \
   --dataset_type spectra \
-  --test \
-  --qnn \
-  --save_dir ./output/test \
+  --save_dir ./output/model/morgan_hybrid_fingerprint_default_lr \
   --config_path ./recommended_config.json
 
 # if we don't want to seperate data auto, assign path
