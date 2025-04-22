@@ -157,3 +157,11 @@ Epoch 16
 Loss = 1.8851e-01, PNorm = 253.0562, GNorm = 0.0837, lr_0 = 7.7201e-05
 Validation sid = 0.200437
 Epoch 17
+
+Loss = 1.8554e-01, PNorm = 260.5116, GNorm = 0.0989, lr_0 = 7.7018e-05
+Validation sid = 0.198380
+Epoch 18
+
+Loss = 1.8279e-01, PNorm = 267.7972, GNorm = 0.0834, lr_0 = 7.6836e-05
+Validation sid = 0.196350
+Epoch 19
