@@ -1,0 +1,159 @@
+Fold 0
+{'activation': 'ReLU',
+ 'atom_messages': False,
+ 'batch_size': 50,
+ 'bias': False,
+ 'bias_ffn': True,
+ 'checkpoint_dir': None,
+ 'checkpoint_path': None,
+ 'checkpoint_paths': None,
+ 'config_path': './recommended_config.json',
+ 'convergence_margin': 100000000.0,
+ 'crossval_index_dir': None,
+ 'crossval_index_file': None,
+ 'cuda': True,
+ 'data_path': './data/research_data/train_full.csv',
+ 'dataset_type': 'spectra',
+ 'depth': 3,
+ 'device': 'cuda:0',
+ 'dropout': 0.05,
+ 'ensemble_size': 1,
+ 'epochs': 200,
+ 'features_generator': ['morgan'],
+ 'features_only': True,
+ 'features_path': None,
+ 'features_scaling': False,
+ 'ffn_hidden_size': 2100,
+ 'ffn_num_layers': 3,
+ 'final_lr': 5e-05,
+ 'folds_file': None,
+ 'frzn_mpn_checkpoint': None,
+ 'gpu': 0,
+ 'hidden_size': 300,
+ 'init_lr': 0.0001,
+ 'max_data_size': None,
+ 'max_lr': 8e-05,
+ 'metric': 'sid',
+ 'minimize_score': True,
+ 'multiclass_num_classes': 3,
+ 'no_cache': False,
+ 'normalization_end': 550,
+ 'normalization_start': 50,
+ 'num_folds': 1,
+ 'num_lrs': 1,
+ 'output_activation': 'exp',
+ 'qnn': True,
+ 'qnn_layer': 2,
+ 'quiet': False,
+ 'save_dir': './output/model/qh2_2100_layer2/fold_0',
+ 'save_smiles_splits': False,
+ 'seed': 0,
+ 'separate_test_features_path': None,
+ 'separate_test_path': './data/research_data/test_full.csv',
+ 'separate_val_features_path': None,
+ 'separate_val_path': './data/research_data/val_full.csv',
+ 'show_individual_scores': False,
+ 'sm_eps': 1e-08,
+ 'sm_thresh': 1e-08,
+ 'spectral_loss_function': 'sid',
+ 'spectral_mask_path': None,
+ 'split_sizes': [0.8, 0.1, 0.1],
+ 'split_type': 'random_with_repeated_smiles',
+ 'target_scaling': True,
+ 'test': False,
+ 'test_fold_index': None,
+ 'torch_seed': None,
+ 'undirected': False,
+ 'use_compound_names': False,
+ 'use_input_features': ['morgan'],
+ 'val_fold_index': None,
+ 'warmup_epochs': 2.0}
+Loading data
+Number of tasks = 1801
+Splitting data with seed 0
+Total size = 68,404 | train size = 68,404 | val size = 8,550 | test size = 8,551
+Pre-normalizing training targets
+Building model 0
+MoleculeModel(
+  (encoder): MPN(
+    (encoder): MPNEncoder()
+  )
+  (ffn): Sequential(
+    (0): <Quantum Torch Layer: func=qnode>
+    (1): Linear(in_features=2048, out_features=2100, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.05, inplace=False)
+    (4): Linear(in_features=2100, out_features=1801, bias=True)
+  )
+)
+Number of parameters = 8,086,823
+Moving model to cuda
+Epoch 0
+
+Loss = 6.2915e-01, PNorm = 87.7156, GNorm = 0.0240, lr_0 = 8.9993e-05
+Validation sid = 0.485364
+Epoch 1
+
+Loss = 4.2493e-01, PNorm = 103.3905, GNorm = 0.0713, lr_0 = 8.0000e-05
+Validation sid = 0.378331
+Epoch 2
+
+Loss = 3.4503e-01, PNorm = 118.2875, GNorm = 0.0517, lr_0 = 7.9810e-05
+Validation sid = 0.321680
+Epoch 3
+
+Loss = 3.0237e-01, PNorm = 131.4196, GNorm = 0.0622, lr_0 = 7.9621e-05
+Validation sid = 0.290779
+Epoch 4
+
+Loss = 2.7760e-01, PNorm = 142.9217, GNorm = 0.0741, lr_0 = 7.9432e-05
+Validation sid = 0.271439
+Epoch 5
+
+Loss = 2.6014e-01, PNorm = 154.0145, GNorm = 0.0521, lr_0 = 7.9244e-05
+Validation sid = 0.257254
+Epoch 6
+
+Loss = 2.4646e-01, PNorm = 164.7589, GNorm = 0.0938, lr_0 = 7.9056e-05
+Validation sid = 0.245913
+Epoch 7
+
+Loss = 2.3551e-01, PNorm = 175.1602, GNorm = 0.0559, lr_0 = 7.8869e-05
+Validation sid = 0.237101
+Epoch 8
+
+Loss = 2.2677e-01, PNorm = 184.9310, GNorm = 0.0720, lr_0 = 7.8682e-05
+Validation sid = 0.230148
+Epoch 9
+
+Loss = 2.1956e-01, PNorm = 194.4643, GNorm = 0.0844, lr_0 = 7.8495e-05
+Validation sid = 0.224447
+Epoch 10
+
+Loss = 2.1342e-01, PNorm = 203.6893, GNorm = 0.0483, lr_0 = 7.8309e-05
+Validation sid = 0.219566
+Epoch 11
+
+Loss = 2.0810e-01, PNorm = 212.4229, GNorm = 0.0766, lr_0 = 7.8123e-05
+Validation sid = 0.215542
+Epoch 12
+
+Loss = 2.0338e-01, PNorm = 221.0748, GNorm = 0.0765, lr_0 = 7.7938e-05
+Validation sid = 0.211766
+Epoch 13
+
+Loss = 1.9909e-01, PNorm = 229.4739, GNorm = 0.0889, lr_0 = 7.7753e-05
+Validation sid = 0.208507
+Epoch 14
+
+Loss = 1.9524e-01, PNorm = 237.4852, GNorm = 0.0658, lr_0 = 7.7569e-05
+Validation sid = 0.205624
+Epoch 15
+
+Loss = 1.9171e-01, PNorm = 245.4061, GNorm = 0.1132, lr_0 = 7.7385e-05
+Validation sid = 0.203104
+Epoch 16
+
+Loss = 1.8851e-01, PNorm = 253.0562, GNorm = 0.0837, lr_0 = 7.7201e-05
+Validation sid = 0.200437
+Epoch 17

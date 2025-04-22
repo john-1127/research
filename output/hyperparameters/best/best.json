@@ -1,0 +1,6 @@
+{
+    "dropout": 0.2,
+    "ffn_hidden_size": 2100,
+    "max_lr": 5e-05,
+    "qnn_layer": 2
+}

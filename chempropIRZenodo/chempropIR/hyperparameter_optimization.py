@@ -5,26 +5,36 @@ from copy import deepcopy
 import json
 from typing import Dict, Union
 import os
+import gc
 
 from hyperopt import fmin, hp, tpe
 import numpy as np
+import torch
 
 from chemprop.models import build_model
+from chemprop.models import build_qnn_model
 from chemprop.nn_utils import param_count
 from chemprop.parsing import add_train_args, modify_train_args
 from chemprop.train import cross_validate
 from chemprop.utils import create_logger, makedirs
 
 
+# SPACE = {
+#     # 'max_lr': hp.quniform('max_lr', low = 1e-4, high = 2e-3, q = 1e-4)
+#     'hidden_size': hp.quniform('hidden_size', low=300, high=2400, q=100),
+#     'depth': hp.quniform('depth', low=3, high=6, q=1),
+#     'dropout': hp.quniform('dropout', low=0.0, high=0.20, q=0.05),
+#     'ffn_num_layers': hp.quniform('ffn_num_layers', low=1, high=3, q=1),
+#     'ffn_hidden_size': hp.quniform('ffn_hidden_size', low=300, high=2400, q=100),
+# }
+# INT_KEYS = ['depth','hidden_size','ffn_num_layers','ffn_hidden_size']
 SPACE = {
-    # 'max_lr': hp.quniform('max_lr', low = 1e-4, high = 2e-3, q = 1e-4)
-    'hidden_size': hp.quniform('hidden_size', low=300, high=2400, q=100),
-    'depth': hp.quniform('depth', low=3, high=6, q=1),
+    'max_lr': hp.quniform('max_lr', low = 5e-5, high = 1e-4, q = 1e-5),
     'dropout': hp.quniform('dropout', low=0.0, high=0.20, q=0.05),
-    'ffn_num_layers': hp.quniform('ffn_num_layers', low=1, high=3, q=1),
-    'ffn_hidden_size': hp.quniform('ffn_hidden_size', low=300, high=2400, q=100),
+    'ffn_hidden_size': hp.quniform('ffn_hidden_size', low=500, high=2400, q=100),
+    'qnn_layer': hp.quniform('qnn_layer', low=2, high=10, q=2)
 }
-INT_KEYS = ['depth','hidden_size','ffn_num_layers','ffn_hidden_size']
+INT_KEYS = ['ffn_hidden_size', 'qnn_layer']
 
 
 def grid_search(args: Namespace):
@@ -58,7 +68,7 @@ def grid_search(args: Namespace):
         mean_score, std_score = cross_validate(hyper_args, train_logger)
 
         # Record results
-        temp_model = build_model(hyper_args)
+        temp_model = build_qnn_model(hyper_args)
         num_params = param_count(temp_model)
         logger.info(f'num params: {num_params:,}')
         logger.info(f'{mean_score} +/- {std_score} {hyper_args.metric}')
@@ -77,6 +87,9 @@ def grid_search(args: Namespace):
             else:
                 raise ValueError('Can\'t handle nan score for non-classification dataset.')
 
+        del temp_model
+        torch.cuda.empty_cache()
+        gc.collect()
         return (1 if hyper_args.minimize_score else -1) * mean_score
 
     fmin(objective, SPACE, algo=tpe.suggest, max_evals=args.num_iters)

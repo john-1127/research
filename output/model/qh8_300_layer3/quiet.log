@@ -1,0 +1,7 @@
+Fold 0
+Model 0 best validation sid = 0.163826 on epoch 130
+Model 0 test sid = 0.157672
+Ensemble test sid = 0.157672
+1-fold cross validation
+Seed 0 ==> test sid = 0.157672
+Overall test sid = 0.157672 +/- 0.000000

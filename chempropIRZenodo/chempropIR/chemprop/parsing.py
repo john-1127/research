@@ -187,6 +187,8 @@ def add_train_args(parser: ArgumentParser):
     # Model arguments
     parser.add_argument('--qnn', action='store_true', default=False,
                         help='Set hybrid qnn model')
+    parser.add_argument('--qnn_layer', type=int, default=2,
+                        help='Numbers of qnn layers')
     parser.add_argument('--ensemble_size', type=int, default=1,
                         help='Number of models in ensemble')
     parser.add_argument('--hidden_size', type=int, default=300,

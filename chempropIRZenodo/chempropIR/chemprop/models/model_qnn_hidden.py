@@ -80,7 +80,7 @@ class MoleculeModel(nn.Module):
             return qml.probs(wires=range(num_qubits))
             return [qml.expval(qml.PauliZ(i)) for i in range(num_qubits)]
         
-        weight_shapes = {"weights": (8, num_qubits)}
+        weight_shapes = {"weights": (args.qnn_layer, num_qubits)}
         qnn_layer = qml.qnn.TorchLayer(qnode, weight_shapes)
 
 
