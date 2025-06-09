@@ -1,8 +1,8 @@
 import torch as nn
 import pennylane as qml
 
-n_wires = 11
-n_layers = 2
+n_wires = 30
+n_layers = 8
 
 dev = qml.device("default.qubit", wires=n_wires)
 

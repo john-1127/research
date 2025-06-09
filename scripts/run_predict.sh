@@ -1,7 +1,6 @@
 time python chempropIRZenodo/chempropIR/predict.py \
   --gpu 0 \
-  --qnn \
   --features_generator morgan \
-  --test_path ./data/research_data/test_smiles.csv \
-  --checkpoint_path output/model/morgan_hybrid_fingerprint/fold_0/model_0/model.pt \
-  --preds_path output/model/morgan_hybrid_fingerprint/fold_0/morgan_hybrid_fingerprint.csv
+  --test_path ./data/research_data/train_smiles.csv \
+  --checkpoint_path ./output/model/classical_2100_layer3/fold_0/model_0/model.pt \
+  --preds_path ./output/model/classical_2100_layer3/fold_0/classical_2100_layer3_train.csv

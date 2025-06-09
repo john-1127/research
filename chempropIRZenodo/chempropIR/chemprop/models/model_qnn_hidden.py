@@ -85,9 +85,9 @@ class MoleculeModel(nn.Module):
 
 
         # Create FFN layers
-        if args.ffn_num_layers == 1:
+        if args.ffn_num_layers == 2:
             ffn = [
-                dropout,
+                qnn_layer,
                 nn.Linear(first_linear_dim, args.output_size, bias=bias)
             ]
         else:

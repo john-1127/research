@@ -1,0 +1,12 @@
+# Comparison Report (threshold = 0.4)
+# Format: SMILES, Classical, Hybrid, Diff
+
+C=[N+]([O-])[N+](=O)[O-]	0.2778	0.3012	+0.0234
+[C+]=C1C(=[N-])C1=O	0.2669	0.2768	+0.0098
+c1ccccc1	0.2575	0.2853	+0.0279
+C=C=C	0.2823	0.3799	+0.0976
+Sc1nc(S)nc(S)n1	0.3603	0.4947	+0.1344
+O=c1sc2c(s1)SC(=C1Sc3sc(=O)sc3S1)S2	0.3403	0.3675	+0.0273
+O=C1OC(=C2OC(=O)O2)O1	0.2511	0.2164	-0.0347
+
+# Mean Δ (Hybrid - Classical): +0.0408

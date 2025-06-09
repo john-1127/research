@@ -108,6 +108,9 @@ def load_checkpoint(
     # Build model
     if args.qnn:
         model = build_qnn_model(args)
+        for k in model.state_dict().keys():
+            print("Model param:", k, model.state_dict()[k].shape)
+
         model_state_dict = model.state_dict()
     else:
         model = build_model(args)

@@ -27,6 +27,6 @@ fi
 
 python ./chempropIRZenodo/chempropIR/scripts/SIS_spectra_similarity.py ./output/model/$X/fold_0/$X.csv ./data/research_data/test_full.csv
 
-python ./output/sis/sis_summary.py $GROUP $MODEL ./output/sis/sis_summary.csv
+python ./scripts/sis_summary.py $GROUP $MODEL ./output/sis/sis_summary.csv
 
 mv ./output/sis/similarity.txt ./output/sis/$X.txt

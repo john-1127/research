@@ -22,11 +22,11 @@ def merge_sis_files(ffnn_path, hqnn_path, ensemble_path, group_id, output_path):
 
 if __name__ == '__main__':
     if len(sys.argv) != 5:
-        print("Usage: python merge_sis_to_long_csv.py ffnn.txt hqnn.txt ensemble.txt")
+        print("Usage: python group_sis.py ffnn.txt hqnn.txt ensemble.txt group_id")
     else:
         ffnn_path = f"./output/sis/{sys.argv[1]}.txt"
         hqnn_path = f"./output/sis/{sys.argv[2]}.txt"
         ensemble_path = f"./output/sis/{sys.argv[3]}.txt"
-        group_id = sys.argv[4]
-        output_path = f"./output/figures/distribution.csv"
+        group_id = f"Group{sys.argv[4]}"
+        output_path = f"./output/figures/distribution_group4_7.csv"
         merge_sis_files(ffnn_path, hqnn_path, ensemble_path, group_id, output_path)

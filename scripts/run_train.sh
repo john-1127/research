@@ -10,7 +10,7 @@ time python chempropIRZenodo/chempropIR/train.py \
   --qnn_layer 2 \
   --features_generator morgan \
   --dataset_type spectra \
-  --save_dir ./output/model/qh2_2100_layer2 \
+  --save_dir ./output/model/qh2_2048_layer1_1000 \
   --config_path ./recommended_config.json
 
 # if we don't want to seperate data auto, assign path
