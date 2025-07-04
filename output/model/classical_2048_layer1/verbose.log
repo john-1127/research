@@ -494,5 +494,3 @@ Ensemble test sid = 0.234228
 1-fold cross validation
 Seed 0 ==> test sid = 0.234228
 Overall test sid = 0.234228 +/- 0.000000
-
-need more epoch
