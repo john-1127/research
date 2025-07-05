@@ -101,14 +101,13 @@ def heat_map(top_k_smiles, spectra_ref, conv_matrix):
 def heat_map(top_k_smiles, spectra_ref, conv_matrix,
              frequencies=list(range(400,4002,2)),
              threshold=1e-10, std_dev=10):
-    # 1. 先挑出要比對的 spectra rows
+
     filtered = []
     for smiles, *spec in spectra_ref:
         if smiles in top_k_smiles:
             filtered.append((smiles, np.array(spec, dtype=float)))
     k = len(filtered)
 
-    # 2. 建立 k×k 的相似度矩陣
     sim_matrix = np.zeros((k, k), dtype=float)
     for i, (smi_i, spec_i) in enumerate(filtered):
         for j, (smi_j, spec_j) in enumerate(filtered):
@@ -120,7 +119,6 @@ def heat_map(top_k_smiles, spectra_ref, conv_matrix,
             )
             sim_matrix[i, j] = sim
 
-    # 3. 畫 heatmap
     # labels = [smi for smi, _ in filtered]
     indices = list(range(1,k+1))
     fig, ax = plt.subplots(figsize=(8, 6))
@@ -143,7 +141,7 @@ def main():
     conv_matrix = make_conv_matrix()
 
     count_k = 0
-    k = 5
+    k = 1
 
     for pred_row, pred_smiles in zip(spectra_pred, smiles_pred):
         pred_spec = np.array(pred_row[1:], dtype=float)
@@ -159,8 +157,8 @@ def main():
             sims.append((ref_smiles, sim))
 
         top_k = sorted(sims, key=lambda x: x[1], reverse=True)[:k]
-        for smile in top_k:
-            print(smile)
+        # for smile in top_k:
+        #     print(smile)
 
         top_k_smiles = [sm for sm, _ in top_k]
         # heat_map(top_k_smiles, spectra_ref, conv_matrix)
@@ -168,7 +166,6 @@ def main():
         if pred_smiles in top_k_smiles:
             count_k += 1
 
-        print("")
     print(count_k)
 
 if __name__ == '__main__':

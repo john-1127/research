@@ -1,9 +1,9 @@
 {
-    "dropout": 0.05,
-    "ffn_hidden_size": 1801,
-    "ffn_num_layers": 2,
+    "dropout": 0.1,
+    "ffn_hidden_size": 2100,
+    "ffn_num_layers": 4,
     "ensemble_size": 1,
-    "epochs": 1000,
+    "epochs": 300,
     "final_lr": 5e-05,
     "max_lr": 8e-05,
     "dataset_type": "spectra",
