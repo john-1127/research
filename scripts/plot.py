@@ -19,7 +19,6 @@ def generate_spectra_comparison(
 ):
     plt.figure(figsize=(12, 4))
     for line in lines:
-        
         plt.plot(
             wavenumbers,
             line["absorbance"],
@@ -28,6 +27,7 @@ def generate_spectra_comparison(
             linestyle=line.get("linestyle", "-"),
             linewidth=line.get("linewidth", 2),
         )
+
     xticks = wavenumbers[start::interval]
     plt.xticks(xticks, fontname="sans serif", fontweight="bold")
     plt.xlim(0, 1800)
@@ -40,7 +40,7 @@ def generate_spectra_comparison(
     plt.ylabel(
         "Absorbance (a.u.)", fontname="sans serif", fontsize=12, fontweight="bold"
     )
-    plt.title("Absorbance Spectrum", fontname="sans serif", fontweight="bold")
+    plt.title("IR Spectrum Comparison for Mismatch Case", fontname="sans serif", fontweight="bold")
     plt.legend(frameon=False, loc='upper left')
     plt.grid(False)
 
@@ -51,6 +51,7 @@ def generate_spectra_comparison(
 def generate_spectra_comparison_test(
     wavenumbers: list, lines: list, save_img_path: str, start=50, interval=250
 ):
+    
     plt.figure(figsize=(12, 4))
     for line in lines:
         x = np.array(wavenumbers, dtype=float) 
@@ -79,7 +80,7 @@ def generate_spectra_comparison_test(
     plt.ylabel(
         "Absorbance (a.u.)", fontname="sans serif", fontsize=12, fontweight="bold"
     )
-    plt.title("Absorbance Spectrum", fontname="sans serif", fontweight="bold")
+    plt.title("IR Spectrum Comparison for Top Match Case", fontname="sans serif", fontweight="bold")
     plt.legend(frameon=False, loc='upper left')
     plt.grid(False)
 
@@ -112,33 +113,47 @@ def generate_qnn_architecture():
     fig, ax = qml.draw_mpl(qnode, level='device')(inputs, params)
     fig.savefig("./circuit.jpg", format="jpg", dpi=300, bbox_inches='tight')
 
+def normalize(series: pd.Series) -> pd.Series:
+    total = series.sum(skipna=True)
+    if total == 0:
+        return series.fillna(0.0)
+    return series.fillna(0.0) / total
+
 # example
 
 # file_path_1 = "./data/research_data/test_full.csv"
-file_path_1 = "./nist/test_spectra.csv"
+file_path_1 = "./data/research_data/experiment/test_full.csv"
 df_1 = pd.read_csv(file_path_1)
 
 
 # file_path_2 = "./output/model/ensemble_qh2_2100_layer3/fold_0/ensemble_qh2_2100_layer3.csv"
-file_path_2 = "./nist/predict.csv"
+file_path_2 = "./output/model/qnn_pretrained/fold_0/qnn_pretrained.csv"
 df_2 = pd.read_csv(file_path_2)
 
 wavenumbers = [col for col in df_1.columns if col != "smiles" and col != "epi_unc"]
 
 lines = [
-    {"absorbance": df_1.loc[0, wavenumbers], "label": "Spectrum"},
+    {"absorbance": normalize(df_1.loc[570, wavenumbers]), "label": "Ground Truth"},
     {
-        "absorbance": df_2.loc[0, wavenumbers],
-        "label": "Model Predict Spectrum",
+        "absorbance": normalize(df_2.loc[570, wavenumbers]),
+        "label": "Model Prediction",
         "color": "blue",
         "linestyle": (0, (2, 2)),
         "linewidth": 1.5,
     },
+    {
+        "absorbance": normalize(df_1.loc[229, wavenumbers]),
+        "label": "Top match",
+        "color": "red",
+        "linestyle": (0, (2, 2)),
+        "linewidth": 1.5,
+    },
 ]
-smiles = df_1.loc[0, 'smiles']
-print(f"Selected SMILES: {smiles}")
-smiles = df_2.loc[0, 'smiles']
-print(f"Selected SMILES: {smiles}")
+
+smiles1 = df_1.loc[570, 'smiles']
+print(f"Selected SMILES: {smiles1}")
+smiles2 = df_2.loc[229, 'smiles']
+print(f"Selected SMILES: {smiles2}")
 
 # bad1 = 'CN(c1c([N+](=O)[O-])cc([N+](=O)[O-])cc1[N+](=O)[O-])[N+](=O)[O-]'
 # bad2 = '[2H]C1([2H])C([2H])([2H])C([2H])([2H])C([2H])([2H])C([2H])([2H])C1([2H])[2H]'
@@ -148,9 +163,10 @@ print(f"Selected SMILES: {smiles}")
 # diff_ex1 = 'CC#CC1(O)CCCC(OCCN(C(C)C)C(C)C)C1'
 # diff_ex2 = 'c1cnc2ccc(C3CCC3CNC3CC3)cc2c1'
 # diff_ensemble_ex1 = 'CCC1=C(C)CCC1'
-generate_spectra_comparison_test(wavenumbers, lines, "./0.png")
-# generate_molecular_structure('CCC(CC)N1C(=Nc2cccc(Cl)c2Cl)SCC1CC(C)C', './output/figures/compare2model/FFNN/5.png')
-
+generate_spectra_comparison_test(wavenumbers, lines, "./2.png")
+# generate_molecular_structure('OCCCCCCCCBr', './test2.png')
+# generate_molecular_structure('OCCCCCCCCCl', './test3.png')
+generate_molecular_structure('CCCCCC(C)(C)C', './test2.png')
 
 # file_path_1 = "./data/research_data/test_full.csv"
 # df_1 = pd.read_csv(file_path_1)

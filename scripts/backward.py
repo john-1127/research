@@ -78,60 +78,6 @@ def make_conv_matrix(frequencies=list(range(400,4002,2)),std_dev=10):
             conv_matrix[i,j]=gaussian[abs(i-j)]
     return conv_matrix
 
-def heat_map(top_k_smiles, spectra_ref, conv_matrix):
-
-    rows = []
-    sims = []
-    for ref_row in spectra_ref:
-        ref_smiles = ref_row[0]
-        ref_spec = np.array(ref_row[1:], dtype=float)
-        if ref_smiles in top_k_smiles:
-            rows.append(ref_row)
-    
-    for row in rows:
-        row_smiles = row[0] 
-        row_spec = np.array(row[1:], dtype=float)
-
-        for i in rows:
-            i_smiles = i[0]
-            i_spec = np.array(i[1:], dtype=float)
-            sim = spectral_information_similarity(row_spec, i_spec, conv_matrix)
-            sims.append(sim)
-
-def heat_map(top_k_smiles, spectra_ref, conv_matrix,
-             frequencies=list(range(400,4002,2)),
-             threshold=1e-10, std_dev=10):
-
-    filtered = []
-    for smiles, *spec in spectra_ref:
-        if smiles in top_k_smiles:
-            filtered.append((smiles, np.array(spec, dtype=float)))
-    k = len(filtered)
-
-    sim_matrix = np.zeros((k, k), dtype=float)
-    for i, (smi_i, spec_i) in enumerate(filtered):
-        for j, (smi_j, spec_j) in enumerate(filtered):
-            sim = spectral_information_similarity(
-                spec_i, spec_j, conv_matrix,
-                frequencies=frequencies,
-                threshold=threshold,
-                std_dev=std_dev
-            )
-            sim_matrix[i, j] = sim
-
-    # labels = [smi for smi, _ in filtered]
-    indices = list(range(1,k+1))
-    fig, ax = plt.subplots(figsize=(8, 6))
-    cax = ax.imshow(sim_matrix, interpolation='nearest', aspect='equal')
-    ax.set_xticks(np.arange(k))
-    ax.set_yticks(np.arange(k))
-    ax.set_xticklabels(indices, rotation=90, fontsize=8)
-    ax.set_yticklabels(indices, fontsize=8)
-    ax.set_title(f"Top-{k} Spectral Similarity Heatmap")
-    fig.colorbar(cax, ax=ax, label='Similarity')
-    fig.savefig('heatmap.png',dpi=300,bbox_inches='tight')
-
-    return sim_matrix
 
 def main():
     smiles_pred   = import_smiles(sys.argv[1])
@@ -141,7 +87,7 @@ def main():
     conv_matrix = make_conv_matrix()
 
     count_k = 0
-    k = 1
+    k = 5
 
     for pred_row, pred_smiles in zip(spectra_pred, smiles_pred):
         pred_spec = np.array(pred_row[1:], dtype=float)
@@ -157,8 +103,8 @@ def main():
             sims.append((ref_smiles, sim))
 
         top_k = sorted(sims, key=lambda x: x[1], reverse=True)[:k]
-        # for smile in top_k:
-        #     print(smile)
+        for smile in top_k:
+            print(smile)
 
         top_k_smiles = [sm for sm, _ in top_k]
         # heat_map(top_k_smiles, spectra_ref, conv_matrix)
